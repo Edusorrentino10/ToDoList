@@ -1,72 +1,81 @@
-// Busca a UL dentro da DIV
-var listElement = document.querySelector('#app ul');
+var input_task = document.querySelector('#input_task');
 
-var inputElement = document.querySelector("#app input");
+var input_time = document.querySelector('#input_time');
 
-var buttonElement = document.querySelector("#app button");
+var add_button = document.querySelector('#add_button');
 
-var taskList = JSON.parse(localStorage.getItem('task_list')) || [];
-
+var list_element = document.querySelector('#li');
 
 
-function renderTaskList() {
+var todo_list = JSON.parse(localStorage.getItem('toDoList')) || [];
 
-    listElement.innerHTML = '';
 
-    for(item of taskList) {
-        console.log(item);
+function render() {
 
-        let itemElement = document.createElement('li');
-        let itemText = document.createTextNode(item);
+    list_element.innerHTML = '';
 
-        let removeElement = document.createElement('button');
-        let removeText = document.createTextNode('X');
-        let position = taskList.indexOf(item);
-        removeElement.setAttribute('onclick', 'remove('+ position +')');
-        
+    for (task of todo_list) {
 
-        itemElement.appendChild(itemText);
-        listElement.appendChild(itemElement);
+        let taskElement = document.createElement('li');
+        let taskText = document.createTextNode(task);
+        taskElement.appendChild(taskText);
 
-        removeElement.appendChild(removeText);
-        listElement.appendChild(removeElement);
+        let position = todo_list.indexOf(task);
+        let deleteElement = document.createElement('button');
+        let deleteText = document.createTextNode('X');
+        deleteElement.setAttribute('onclick', 'remove('+position+')');
+        deleteElement.setAttribute('class', 'remove_button');
+        deleteElement.appendChild(deleteText);
+
+        list_element.appendChild(taskElement);
+        list_element.appendChild(deleteElement);
+
+
     }
 }
 
-renderTaskList();
+render();
+
 
 function add() {
-    
-    if (inputElement.value == '') {
-        alert("Digite uma tarefa!");
+
+    if (input_task.value == '') {
+        alert('Enter a task!');
         return false;
     }
-
-    else {
-
-    let itemText = inputElement.value;
-    taskList.push(itemText);
-    inputElement.value = '';
-    renderTaskList();
-    save();
+    else if(input_time.value == '') {
+        alert('Enter a time!');
+        return false;
     }
-    
+    else{
+        let taskText = input_task.value;
+        let time = input_time.value;
+        todo_list.push(taskText + ' - ' + time);
+        input_task.value = '';
+        input_time.value = '';
+        render();
+        save();
+    }
 }
-
-
 
 function remove(position) {
-
-        taskList.splice(position, 1);
-        renderTaskList();
-        save();
+    todo_list.splice(position, 1);
+    render();
+    save();
 }
 
+function clearFunction() {
+    for(task in todo_list) {
+        todo_list.splice(task);
+    }
+    localStorage.clear();
+    render();
+}
+
+function verified() {
+    input_task.value = 'batatinha';
+}
 
 function save() {
-
-    localStorage.setItem('task_list', JSON.stringify(taskList));
+    localStorage.setItem('toDoList', JSON.stringify(todo_list));
 }
-
-// buttonElement.onclick = add;
-
