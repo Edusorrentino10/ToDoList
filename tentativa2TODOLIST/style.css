@@ -1,0 +1,113 @@
+:root {
+    --colorButton: #8844ee;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: white;
+    background-image: linear-gradient( to left, #6431b1 50%, transparent, #29292e  1%);
+}
+#container {
+    width: 425px;
+    height: 650px;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #3b3b3d;
+    border-radius: 2px;
+}
+.grid_form {
+    display: grid;
+    grid-template-columns: 60% 20%;
+    grid-template-rows: 50% 50%;
+    text-align: center;
+    justify-content: center;
+    margin: 30px;
+    grid-gap: 30px;
+}
+h1 {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid #29292e;
+    color: white;
+}
+
+#input_task, #input_time {
+    padding: 1.5px;
+}
+#input_task {
+    padding-left: 3px;
+}
+
+#add_button, #clear_button {
+    background-color: var(--colorButton);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#add_button:hover, #clear_button:hover {
+    background-color: #8844ee91;
+}
+.remove_button {
+    float: right;
+    background-color: rgb(167, 1, 1);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    bottom: 37px;
+    padding: 2px 4px;
+    
+}
+.remove_button:hover {
+    background-color: rgba(167, 1, 1, 0.822);
+}
+
+#li {
+    margin: auto;
+    list-style-type: none;
+    background-color: white;
+    max-width: 325px;
+    max-height: 370px;
+    font-weight: 700;
+    border: 2px solid #29292e;
+    border-radius: 5px;
+    padding: 3px;
+    overflow-y: scroll;
+    
+}
+li {
+    border-bottom: 0.1px solid rgba(121, 11, 11, 0.13);
+    padding: 15px;
+    word-break: break-all;
+}
+#div_lista {
+    margin-top: 60px;
+}
+
+
+
+
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3b3b3d white;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #3b3b3d;
+    border-radius: 20px;
+    border: 3px solid white;
+  }
